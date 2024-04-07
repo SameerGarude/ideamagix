@@ -1,7 +1,7 @@
 {
   "name": "idea",
   "version": "0.1.0",
-  "homepage": "https://sameergarude.github.io/idea/",
+  "homepage": "https://sameergarude.github.io/ideamagix/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
