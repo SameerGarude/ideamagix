@@ -48,21 +48,55 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  // Function to handle search
-  const handleSearch = query => {
-    setSearchQuery(query);
-    // Filter products based on search query
-    const filtered = products.filter(product =>
-      product.title.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredProducts(filtered);
+  // Get current products based on pagination
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Change page
+  const paginate = pageNumber => {
+    fetchProducts();
+    setCurrentPage(pageNumber);
   };
+
+  const handleSearch = query => {
+    // Set search query
+    setSearchQuery(query);
+
+    // Fetch products from API
+    fetch("https://fakestoreapi.com/products")
+      .then(response => response.json())
+      .then(data => {
+        // Set all products
+        setProducts(data);
+
+        // Filter products based on search query
+        const filtered = data.filter(product =>
+          product.title.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+      })
+      .catch(error => console.error("Error fetching products:", error));
+  };
+
+  // // Function to handle search
+  // const handleSearch = query => {
+  //   setSearchQuery(query);
+  //   // Filter products based on search query
+  //   const filtered = products.filter(product =>
+  //     product.title.toLowerCase().includes(query.toLowerCase())
+  //   );
+  //   setFilteredProducts(filtered);
+  // };
 
   // Function to handle adding product to cart
   const handleAddToCart = product => {
     setCartItems([...cartItems, product]);
     // Fetch products again after adding to cart
-    fetchProducts();
+    // fetchProducts();
   };
 
   const handleRemove = product => {
@@ -74,45 +108,63 @@ const App = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
 
-  // Get current products based on pagination
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-
-  // Change page
-  const paginate = pageNumber => {
-    setCurrentPage(pageNumber);
-    fetchProducts();
-  };
-
   const handleCategoryClick = category => {
     // Fetch products from API
+    fetch("https://fakestoreapi.com/products")
+      .then(response => response.json())
+      .then(data => {
+        // Set all products
+        setProducts(data);
 
-    // Filter products based on the clicked category after fetching
-    const filtered = products.filter(product => product.category === category);
-    setFilteredProducts(filtered);
+        // Apply filter after fetching
+        const filtered = data.filter(product => product.category === category);
+        setFilteredProducts(filtered);
+      })
+      .catch(error => console.error("Error fetching products:", error));
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, [categories]);
+  const handlePriceFilter = () => {
+    // Fetch products from API
+    fetch("https://fakestoreapi.com/products")
+      .then(response => response.json())
+      .then(data => {
+        // Set all products
+        setProducts(data);
+
+        // Apply filter after fetching
+        const filtered = data.filter(
+          product => product.price >= minPrice && product.price <= maxPrice
+        );
+        setFilteredProducts(filtered);
+      })
+      .catch(error => console.error("Error fetching products:", error));
+  };
+
+  // const handleCategoryClick = category => {
+  //   // Fetch products from API
+
+  //   // Filter products based on the clicked category after fetching
+  //   const filtered = products.filter(product => product.category === category);
+  //   setFilteredProducts(filtered);
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, [categories]);
 
   // Function to handle filtering by price range
-  const handlePriceFilter = () => {
-    const filtered = products.filter(
-      product => product.price >= minPrice && product.price <= maxPrice
-    );
-    setFilteredProducts(filtered);
-    // Fetch products again after applying price filter
-    // fetchProducts();
-  };
+  // const handlePriceFilter = () => {
+  //   const filtered = products.filter(
+  //     product => product.price >= minPrice && product.price <= maxPrice
+  //   );
+  //   setFilteredProducts(filtered);
+  //   // Fetch products again after applying price filter
+  //   // fetchProducts();
+  // };
 
-  useEffect(() => {
-    fetchProducts();
-  }, [minPrice, maxPrice]);
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, [minPrice, maxPrice]);
 
   useEffect(() => {
     const handleScroll = () => {
