@@ -22,8 +22,8 @@ const App = () => {
   const [productsPerPage] = useState(5);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
   // Fetch products from API link
@@ -56,9 +56,7 @@ const App = () => {
     indexOfLastProduct
   );
 
-  // Change page
   const paginate = pageNumber => {
-    fetchProducts();
     setCurrentPage(pageNumber);
   };
 
@@ -82,21 +80,9 @@ const App = () => {
       .catch(error => console.error("Error fetching products:", error));
   };
 
-  // // Function to handle search
-  // const handleSearch = query => {
-  //   setSearchQuery(query);
-  //   // Filter products based on search query
-  //   const filtered = products.filter(product =>
-  //     product.title.toLowerCase().includes(query.toLowerCase())
-  //   );
-  //   setFilteredProducts(filtered);
-  // };
-
   // Function to handle adding product to cart
   const handleAddToCart = product => {
     setCartItems([...cartItems, product]);
-    // Fetch products again after adding to cart
-    // fetchProducts();
   };
 
   const handleRemove = product => {
@@ -140,32 +126,6 @@ const App = () => {
       .catch(error => console.error("Error fetching products:", error));
   };
 
-  // const handleCategoryClick = category => {
-  //   // Fetch products from API
-
-  //   // Filter products based on the clicked category after fetching
-  //   const filtered = products.filter(product => product.category === category);
-  //   setFilteredProducts(filtered);
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, [categories]);
-
-  // Function to handle filtering by price range
-  // const handlePriceFilter = () => {
-  //   const filtered = products.filter(
-  //     product => product.price >= minPrice && product.price <= maxPrice
-  //   );
-  //   setFilteredProducts(filtered);
-  //   // Fetch products again after applying price filter
-  //   // fetchProducts();
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, [minPrice, maxPrice]);
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
@@ -202,11 +162,11 @@ const App = () => {
           </div>
 
           <div className="button">
-            <div className="awesome">
+            <div className="awesome kart">
               <FontAwesomeIcon icon={faUser} />
               <span>Sign in</span>
             </div>
-            <div className="awesome">
+            <div className="awesome kart">
               <FontAwesomeIcon icon={faHeart} />
               <span>Wishlist</span>
             </div>
@@ -252,7 +212,7 @@ const App = () => {
             <div className="vertical-elements">
               <div className="element">
                 <div className="tick">
-                  <input type="checkbox" checked />
+                  <input type="checkbox" />
                   <label htmlFor="">Mercedes</label>
                 </div>
                 <div className="btn">
@@ -261,7 +221,7 @@ const App = () => {
               </div>
               <div className="element">
                 <div className="tick">
-                  <input type="checkbox" checked />
+                  <input type="checkbox" />
                   <label htmlFor="">Toyota</label>
                 </div>
                 <div className="btn">
@@ -270,7 +230,7 @@ const App = () => {
               </div>
               <div className="element">
                 <div className="tick">
-                  <input type="checkbox" checked />
+                  <input type="checkbox" />
                   <label htmlFor="">Mitsubishi</label>
                 </div>
                 <div className="btn">
@@ -279,7 +239,7 @@ const App = () => {
               </div>
               <div className="element">
                 <div className="tick">
-                  <input type="checkbox" checked />
+                  <input type="checkbox" />
                   <label htmlFor="">Nissan</label>
                 </div>
                 <div className="btn">
@@ -356,7 +316,7 @@ const App = () => {
             <div className="border-bottom"></div>
             <div className="vertical-elements">
               <div className="element ratings">
-                <input type="checkbox" checked />
+                <input type="checkbox" />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
@@ -364,7 +324,7 @@ const App = () => {
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
               </div>
               <div className="element">
-                <input type="checkbox" checked />
+                <input type="checkbox" />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
@@ -372,7 +332,7 @@ const App = () => {
                 <FontAwesomeIcon icon={faStar} style={{ color: "gray" }} />
               </div>
               <div className="element">
-                <input type="checkbox" checked />
+                <input type="checkbox" />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
@@ -380,7 +340,7 @@ const App = () => {
                 <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
               </div>
               <div className="element">
-                <input type="checkbox" checked />
+                <input type="checkbox" />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "gray" }} />
@@ -393,7 +353,7 @@ const App = () => {
 
         <div className="right">
           <div className="up">
-            <p>0 Items found</p>
+            <p>"{filteredProducts.length}" Items found</p>
             <div className="btn">
               <div className="btn1">
                 <span>Best match</span>
@@ -452,7 +412,7 @@ const App = () => {
                 </li>
               </>
             ))}
-            <div>Total: ${calculateTotalPrice()}</div>
+            <h2>Total: ${calculateTotalPrice()}</h2>
           </ul>
         </div>
       )}

@@ -1,9 +1,9 @@
 $primary-color: #3e7ad5; // Flipkart primary color
 
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: "Roboto", sans-serif;
+  // margin: 0;
+  // padding: 0;
 }
 
 .App {
@@ -210,6 +210,7 @@ body {
         border-bottom: 1px solid #ccc;
         padding-bottom: 7px;
         p {
+          font-weight: bold;
           padding-top: 15px;
         }
         .btn {
@@ -343,226 +344,194 @@ body {
   }
 }
 
-@media only screen and (max-width: 300px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-
-    .logo {
-      margin-bottom: 10px;
-    }
-
-    .search-bar {
-      width: 100%;
-
-      .search-input {
-        width: calc(100% - 55px);
-      }
-
-      .search-btn {
-        width: 100%;
-      }
-    }
-
-    .button {
-      flex-direction: column;
-      align-items: flex-end;
-
-      .awesome {
-        margin-bottom: 5px;
-        visibility: hidden;
-      }
-
-      .cart-count {
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-  }
-
-  .result {
-    font-size: 20px;
-    padding-left: 20px;
-
-    span {
-      visibility: hidden;
-      font-size: 14px;
-    }
-  }
-
-  .middle {
-    flex-direction: column;
-    // margin: 20px 0;
-
-    .left {
-      width: 100%;
-      margin-left: 0;
-      // padding: 0;
-    }
-
-    .right {
-      width: 100%;
-      margin-right: 0;
-
-      .product {
+@media only screen and (max-width: 350px) {
+  .App {
+    .header-container {
+      .header {
         flex-direction: column;
-
-        .one {
+        align-items: flex-start;
+        position: relative;
+        .logo {
+          margin-bottom: 10px;
+        }
+        .search-bar {
           width: 100%;
-          text-align: center;
-
-          img {
-            width: 100%;
-            height: auto;
-          }
+          margin-bottom: 10px;
         }
+        .button {
+          position: absolute;
+          top: 12px;
+          right: 10px;
 
-        .two {
-          margin-top: 10px;
-          text-align: center;
-        }
-
-        .three {
-          align-items: center;
-          margin-top: 10px;
-
-          button {
-            width: 100%;
+          .kart {
+            display: none;
           }
         }
       }
     }
-  }
 
-  .pagination {
-    margin-top: 10px;
-  }
+    .result {
+      height: 90px;
+      font-size: 20px;
+      padding-left: 20px;
 
-  .cart {
-    top: 60px;
-    right: 10px;
-    padding: 10px;
-
-    h2 {
-      font-size: 16px;
-      margin-bottom: 5px;
+      span {
+        font-size: 14px;
+      }
     }
 
-    li {
+    .middle {
+      flex-direction: column;
+      width: 90%;
+      padding: 5%;
+      .left {
+        margin: 0;
+      }
+
+      .right {
+        margin-right: 0;
+
+        .product {
+          flex-direction: column;
+
+          .one {
+            width: 100%;
+            text-align: center;
+
+            img {
+              width: 60%;
+              height: auto;
+            }
+          }
+
+          .two {
+            margin-top: 10px;
+            text-align: center;
+          }
+
+          .three {
+            align-items: center;
+            margin-top: 10px;
+
+            button {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .pagination {
+      margin-top: 0px;
+    }
+
+    .cart {
+      top: 60px;
+      right: 10px;
+      padding: 10px;
+
+      h2 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      li {
+        font-size: 14px;
+      }
+    }
+
+    .footer {
+      padding: 10px;
       font-size: 14px;
     }
-  }
-
-  .footer {
-    padding: 10px;
-    font-size: 14px;
   }
 }
 
-@media only screen and (min-width: 301px) and (max-width: 750px) {
-  .header {
-    padding: 10px;
-
-    .search-bar {
-      .search-input {
-        width: calc(100% - 55px);
+@media only screen and (min-width: 351px) and (max-width: 700px) {
+  .App {
+    .header-container {
+      .header {
+        .search-bar {
+          width: 300px;
+        }
+        .button {
+          .kart {
+            display: none;
+          }
+        }
       }
     }
 
-    .button {
-      .awesome {
+    .result {
+      font-size: 18px;
+      padding-left: 20px;
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .middle {
+      .left {
+        margin-left: 10px;
+      }
+
+      .right {
+        margin-right: 10px;
+
+        .product {
+          flex-direction: column;
+
+          .one {
+            text-align: center;
+
+            img {
+              width: 60%;
+            }
+          }
+
+          .two {
+            text-align: center;
+          }
+
+          .three {
+            align-items: center;
+
+            button {
+              width: 50%;
+            }
+          }
+        }
+      }
+    }
+
+    .pagination {
+      margin-top: 10px;
+
+      button {
         padding: 5px 8px;
         font-size: 14px;
       }
+    }
 
-      .cart-count {
-        top: -6px;
-        right: 38px;
-        font-size: 12px;
+    .cart {
+      top: 60px;
+      right: 10px;
+      padding: 10px;
+
+      h2 {
+        font-size: 18px;
+        margin-bottom: 5px;
       }
-    }
-  }
 
-  .result {
-    font-size: 18px;
-    padding-left: 20px;
-
-    span {
-      font-size: 14px;
-    }
-  }
-
-  .middle {
-    flex-direction: column;
-    margin: 20px 0;
-
-    .left {
-      margin-left: 10px;
-
-      .box {
-        margin-bottom: 15px;
+      li {
+        font-size: 14px;
       }
     }
 
-    .right {
-      margin-right: 0;
-
-      .product {
-        flex-direction: column;
-
-        .one {
-          width: 100%;
-
-          img {
-            width: 100%;
-            height: auto;
-          }
-        }
-
-        .two {
-          margin-top: 10px;
-          text-align: center;
-        }
-
-        .three {
-          align-items: center;
-          margin-top: 10px;
-
-          button {
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  .pagination {
-    margin-top: 10px;
-
-    button {
-      padding: 5px 8px;
+    .footer {
+      padding: 10px;
       font-size: 14px;
     }
-  }
-
-  .cart {
-    top: 60px;
-    right: 10px;
-    padding: 10px;
-
-    h2 {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-
-    li {
-      font-size: 14px;
-    }
-  }
-
-  .footer {
-    padding: 10px;
-    font-size: 14px;
   }
 }
