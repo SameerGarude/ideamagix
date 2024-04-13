@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ideamagix/static/css/main.59898045.css",
+    "main.css": "/ideamagix/static/css/main.0a6e8544.css",
     "main.js": "/ideamagix/static/js/main.cfb05ab2.js",
     "index.html": "/ideamagix/index.html",
-    "main.59898045.css.map": "/ideamagix/static/css/main.59898045.css.map",
+    "main.0a6e8544.css.map": "/ideamagix/static/css/main.0a6e8544.css.map",
     "main.cfb05ab2.js.map": "/ideamagix/static/js/main.cfb05ab2.js.map"
   },
   "entrypoints": [
-    "static/css/main.59898045.css",
+    "static/css/main.0a6e8544.css",
     "static/js/main.cfb05ab2.js"
   ]
 }
