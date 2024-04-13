@@ -344,7 +344,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 480px) {
   .App {
     .header-container {
       .header {
@@ -360,8 +360,8 @@ body {
         }
         .button {
           position: absolute;
-          top: 12px;
-          right: 10px;
+          top: 12%;
+          right: 5%;
 
           .kart {
             display: none;
@@ -447,7 +447,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 351px) and (max-width: 700px) {
+@media only screen and (min-width: 481px) and (max-width: 767px) {
   .App {
     .header-container {
       .header {
